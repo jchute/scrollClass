@@ -34,7 +34,7 @@ No options are required.
   
     <script type="text/javascript">
     $(document).ready(function(){
-      $('.yourDiv').scrollClass();
+      $('body').scrollClass();
     });
     </script>
     
