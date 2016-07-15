@@ -1,5 +1,7 @@
 # Scroll Class
-Adds a Class on User Scroll
+Adds a Class on User Scroll.
+
+Once the class is applied, CSS may be used as normal to change any aspect of your website. Including, but not limited to, adding a sticky nav partway down the page, lessening the height of a sticky header, fading in items, etc.
 
 ## Options
 
