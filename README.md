@@ -7,10 +7,11 @@ Once the class is applied, CSS may be used as normal to change any aspect of you
 
 No options are required.
 
-|  Option   |       Type       |  Default   | Description |
-|-----------|------------------|------------|-------------|
-| className |       STR        | 'scrolled' | The class that is assigned when the user scrolls to the position. |
-| position  | INT, STR, jQuery |     1      | Sets the point when the class gets added. More information below. |
+|    Option     |       Type       |   Default    | Description |
+|---------------|------------------|--------------|-------------|
+|    target     | INT, STR, $, ARR |   ['top']    | Sets the point when the class gets added. More information below. |
+|   className   |     STR, ARR     | ['scrolled'] | The class that is assigned when the user scrolls to the position. |
+| addDirections |       BOOL       |    false     | Option for adding a class based on the scrolls direction. Classes: up-scroll, down-scroll, no-scroll |
 
 ## Positions
 
@@ -42,13 +43,39 @@ No options are required.
 
     $('body').scrollClass({
       className: 'scrolled',
-      position: 'top'
+      target: 'top',
+      addDirections: true
+    });
+
+    $('body').scrollClass({
+      className: 'scrolled',
+      target: 1000,
+      addDirections: false
+    });
+
+    $('body').scrollClass({
+      className: 'scrolled',
+      target: '100vh',
+      addDirections: false
     });
     
 ### Targeting Element
 
     $('body').scrollClass({
-      position: $('element')
+      target: $('element')
+    });
+    
+### Multiple Points
+
+When assigning multiple targets, add each point into an array. A default class of "scrolled" will be added to the first target. This may be changed either by passing a string or the first value of an array. The following targets will recieve a class name following the pattern 'firstClass-1', 'firstClass-2', 'firstClass-3', etc.
+
+The First string in the className array will be used for the first value in the target array, the second for the second, etc. If you wish to give a particular class to a later target but want to keep the default for others, you may use an empty string ('') for these choices.
+
+The className array needs not to be the same length as the target array. Default classes will be used to fill in missing values. If the className array is longer, only the first classes will be used.
+
+    $('body').scrollClass({
+      target: ['top', 1000, '100vh', $('element')],
+      className: ['scrolled', '', 'scrolled-3']
     });
 
 ## Other information
