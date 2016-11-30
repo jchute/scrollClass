@@ -55,9 +55,9 @@ Year: 2016
                 settings.target.splice(i, 1);
                 settings.class.splice(i, 1);
                 i--;
+            } else {
+                settings.target[i] = convertToPixel(settings.target[i], i);
             }
-
-            settings.target[i] = convertToPixel(settings.target[i], i);
         }
 
 
