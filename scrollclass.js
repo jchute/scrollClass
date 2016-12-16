@@ -131,9 +131,6 @@ Year: 2016
             if(value == 'top') value = 1;
             if(value == 'middle') value = (bodyHeight / 2) - (winHeight / 2);
             if(value == 'bottom') value = bodyHeight - winHeight;
-            
-            console.log('Document Height: ' + bodyHeight);
-            console.log('Window Height: ' + winHeight);
 
             if(unit == '%') value = value * (bodyHeight / 100);
             if(unit == 'vh') value = value * (winHeight / 100);
