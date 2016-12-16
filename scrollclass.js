@@ -1,6 +1,6 @@
 /*
 Scroll Class
-Version: 3.0
+Version: 3.1
 Developer: Jonathan Chute
 Year: 2016
 */
@@ -55,8 +55,6 @@ Year: 2016
                 settings.target.splice(i, 1);
                 settings.class.splice(i, 1);
                 i--;
-            } else {
-                settings.target[i] = convertToPixel(settings.target[i], i);
             }
         }
 
@@ -65,7 +63,7 @@ Year: 2016
             currPos = {top: $(window).scrollTop(), left: $(window).scrollLeft()};
 
             for(var i = 0; i < settings.target.length; i++) {
-                if(currPos.top >= settings.target[i]) {
+                if(currPos.top >= convertToPixel(settings.target[i], i)) {
                     mainObj.addClass(settings.class[i]);
                 } else {
                     mainObj.removeClass(settings.class[i]);
@@ -92,7 +90,9 @@ Year: 2016
             }
 
             prevPos = currPos;
-        } checkScroll(); $(window).scroll(checkScroll);
+        }
+        
+        checkScroll(); $(window).scroll(checkScroll);
 
 
         function addSuffix(number) {
@@ -114,9 +114,9 @@ Year: 2016
         function convertToPixel(value, index) {
             value = value.toString();
 
-            var docHeight = $(document).height(),
+            var bodyHeight = $('body').height(),
+                bodyWidth = $('body').width(),
                 winHeight = $(window).height(),
-                winWidth = $(window).innerWidth(),
                 unit = '';
 
             if(value.slice(-1) == '%') {
@@ -129,12 +129,15 @@ Year: 2016
             }
 
             if(value == 'top') value = 1;
-            if(value == 'middle') value = (docHeight / 2) - (winHeight / 2);
-            if(value == 'bottom') value = docHeight - winHeight;
+            if(value == 'middle') value = (bodyHeight / 2) - (winHeight / 2);
+            if(value == 'bottom') value = bodyHeight - winHeight;
+            
+            console.log('Document Height: ' + bodyHeight);
+            console.log('Window Height: ' + winHeight);
 
-            if(unit == '%') value = value * (docHeight / 100);
+            if(unit == '%') value = value * (bodyHeight / 100);
             if(unit == 'vh') value = value * (winHeight / 100);
-            if(unit == 'vw') value = value * (winWidth / 100);
+            if(unit == 'vw') value = value * (bodyWidth / 100);
 
             if(isNaN(value)) {
                 console.log('%cWarning: "' + value + '" is not a valid value for "target".', errStyle);
