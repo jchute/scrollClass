@@ -12,6 +12,7 @@ No options are required.
 |     target     | INT, STR, $, ARR |   ['top']    | Sets the point when the class gets added. More information below. |
 |     class      |     STR, ARR     | ['scrolled'] | The class that is assigned when the user scrolls to the position. |
 | showDirections |       BOOL       |    false     | Option for adding a class based on the scrolls direction. Classes: up-scroll, down-scroll, no-scroll |
+|   keepClass    |       BOOL       |    false     | Option for keeping the classes when scrolling up the page. |
 
 ## Positions
 
@@ -44,19 +45,22 @@ No options are required.
     $('body').scrollClass({
       class: 'scrolled',
       target: 'top',
-      showDirections: true
+      showDirections: true,
+      keepClass: false
     });
 
     $('body').scrollClass({
       class: 'scrolled',
       target: 1000,
-      showDirections: false
+      showDirections: false,
+      keepClass: true
     });
 
     $('body').scrollClass({
       class: 'scrolled',
       target: '100vh',
-      showDirections: false
+      showDirections: false,
+      keepClass: false
     });
     
 ### Targeting Element
