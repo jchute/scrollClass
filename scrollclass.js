@@ -1,6 +1,6 @@
 /*
 Scroll Class
-Version: 3.1
+Version: 3.2
 Developer: Jonathan Chute
 Year: 2016
 */
@@ -13,7 +13,8 @@ Year: 2016
         var settings = $.extend( {
                 'target': ['top'],
                 'class': ['scrolled'],
-                'showDirections': false
+                'showDirections': false,
+                'keepClass': false
             }, options );
 
         var mainObj = $(this),
@@ -66,7 +67,9 @@ Year: 2016
                 if(currPos.top >= convertToPixel(settings.target[i], i)) {
                     mainObj.addClass(settings.class[i]);
                 } else {
-                    mainObj.removeClass(settings.class[i]);
+                    if(!settings.keepClass) {
+                        mainObj.removeClass(settings.class[i]);
+                    }
                 }
             }
 
