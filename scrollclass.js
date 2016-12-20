@@ -1,6 +1,6 @@
 /*
 Scroll Class
-Version: 3.2
+Version: 3.3
 Developer: Jonathan Chute
 Year: 2016
 */
@@ -135,9 +135,11 @@ Year: 2016
             if(value == 'middle') value = (bodyHeight / 2) - (winHeight / 2);
             if(value == 'bottom') value = bodyHeight - winHeight;
 
-            if(unit == '%') value = value * (bodyHeight / 100);
-            if(unit == 'vh') value = value * (winHeight / 100);
+            if(unit == '%') value = value * ((bodyHeight - winHeight) / 100);
             if(unit == 'vw') value = value * (bodyWidth / 100);
+            if(unit == 'vh') value = value * (winHeight / 100);
+            
+            console.log(value);
 
             if(isNaN(value)) {
                 console.log('%cWarning: "' + value + '" is not a valid value for "target".', errStyle);
