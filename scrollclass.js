@@ -138,8 +138,6 @@ Year: 2016
             if(unit == '%') value = value * ((bodyHeight - winHeight) / 100);
             if(unit == 'vw') value = value * (bodyWidth / 100);
             if(unit == 'vh') value = value * (winHeight / 100);
-            
-            console.log(value);
 
             if(isNaN(value)) {
                 console.log('%cWarning: "' + value + '" is not a valid value for "target".', errStyle);
